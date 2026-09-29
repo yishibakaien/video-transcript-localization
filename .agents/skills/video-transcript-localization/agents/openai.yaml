@@ -1,0 +1,4 @@
+interface:
+  display_name: "视频字幕整理与翻译"
+  short_description: "提取 YouTube / B 站 / 抖音等视频字幕，纠错并整理为简体中文 Markdown：导读、术语表、章节、可跳转时间戳，广告默认折叠"
+  default_prompt: "使用 $video-transcript-localization 处理这个视频：提取字幕，结合完整上下文纠正识别错误，整理并翻译为简体中文 Markdown，标注说话人，广告默认折叠。"

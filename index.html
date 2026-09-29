@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="在线视频的简体中文双语字幕稿库：完整、可搜索、带原文对照。">
+  <title>Video Specimen</title>
+  <script>
+    (() => {
+      let theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      try {
+        const stored = localStorage.getItem("site-theme");
+        if (stored === "light" || stored === "dark") theme = stored;
+      } catch {}
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f7f5ef;
+      --surface: #fffdf8;
+      --surface-subtle: #ecefe9;
+      --ink: #202523;
+      --muted: #66706a;
+      --line: #d9ddd7;
+      --line-strong: #bfc7c0;
+      --accent: #0f6658;
+      --accent-soft: #dcece7;
+      --accent-contrast: #fff;
+      --shadow: 0 10px 28px rgba(31, 38, 34, .07);
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --serif: Iowan Old Style, Palatino Linotype, Book Antiqua, Georgia, serif;
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --paper: #151816;
+      --surface: #1d211e;
+      --surface-subtle: #252b27;
+      --ink: #e8ece8;
+      --muted: #aab4ad;
+      --line: #343b36;
+      --line-strong: #4a554e;
+      --accent: #78cbbb;
+      --accent-soft: #203b35;
+      --accent-contrast: #10211d;
+      --shadow: 0 14px 34px rgba(0, 0, 0, .28);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.65;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 22px 72px;
+    }
+
+    .masthead { padding: 46px 0 26px; }
+
+    .masthead-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-family: var(--serif);
+      font-size: 2.35rem;
+      line-height: 1.16;
+    }
+
+    .lede {
+      margin: 0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      background: var(--surface);
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .theme-toggle svg { width: 18px; height: 18px; }
+
+    html[data-theme="dark"] .theme-icon-sun { display: none; }
+    html:not([data-theme="dark"]) .theme-icon-moon { display: none; }
+
+    .section-label {
+      margin: 34px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+      font-size: .95rem;
+      font-weight: 650;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .episode {
+      display: block;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: inherit;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      transition: border-color .18s ease, transform .18s ease;
+    }
+
+    .episode:hover,
+    .episode:focus-visible {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .episode .num {
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .episode h2 {
+      margin: 0 0 8px;
+      font-family: var(--serif);
+      font-size: 1.18rem;
+      line-height: 1.35;
+    }
+
+    .episode .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .episode .meta span:not(:last-child)::after {
+      content: "·";
+      margin-left: 10px;
+    }
+
+    .repo {
+      margin-top: 40px;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface-subtle);
+    }
+
+    .repo p { margin: 6px 0 0; color: var(--muted); font-size: .95rem; }
+    .repo a { color: var(--accent); text-underline-offset: .14em; }
+
+    @media (max-width: 640px) {
+      .masthead { padding-top: 34px; }
+      h1 { font-size: 1.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="masthead">
+      <div class="masthead-top">
+        <div>
+          <h1>Video Specimen</h1>
+          <p class="lede">在线视频的简体中文双语字幕稿库。点击任意一集即可阅读中英文对照正文。</p>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换深浅模式">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 14.2A8.2 8.2 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <p class="section-label">剧集</p>
+    <div class="grid">
+      <a class="episode" href="episodes/001-remote-viewer-joe-mcmoneagle/index.html">
+        <p class="num">001</p>
+        <h2>远程观众：乔·麦克莫尼格尔</h2>
+        <div class="meta"><span>Aaron Alexander</span><span>YouTube</span><span>01:31:52</span></div>
+      </a>
+      <a class="episode" href="episodes/002-the-secret-remote-viewing-experiment-that-broke-a-memory-cha/index.html">
+        <p class="num">002</p>
+        <h2>记忆冠军的遥视实验：尼尔森·德利斯</h2>
+        <div class="meta"><span>THIRD EYE DROPS with Michael Phillip</span><span>YouTube</span><span>02:02:24</span></div>
+      </a>
+      <a class="episode" href="episodes/003-ufo-abductee-describes-horrifying-captors-ufo-witness-travel/index.html">
+        <p class="num">003</p>
+        <h2>UFO 劫持案亲历者：可怕的抓捕者</h2>
+        <div class="meta"><span>Travel Channel</span><span>YouTube</span><span>00:08:02</span></div>
+      </a>
+    </div>
+
+    <div class="repo">
+      <p>
+        查看仓库说明、脚本用法和贡献方式，请返回
+        <a href="https://github.com/yishibakaien/video-specimen">GitHub 仓库</a>。
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        const next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("site-theme", next); } catch {}
+      });
+    })();
+  </script>
+</body>
+</html>
