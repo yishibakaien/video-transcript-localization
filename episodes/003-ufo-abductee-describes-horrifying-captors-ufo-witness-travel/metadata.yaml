@@ -1,0 +1,47 @@
+episode: 3
+slug: "ufo-abductee-describes-horrifying-captors-ufo-witness-travel"
+title: "UFO Abductee Describes Horrifying Captors | UFO Witness | Travel Channel"
+translated_title: "UFO 劫持案亲历者描述可怕的抓捕者｜UFO Witness｜Travel Channel"
+url: "https://www.youtube.com/watch?v=zEibn49GRZI"
+platform: "YouTube"
+channel: "Travel Channel"
+upload_date: "2023-05-22"
+duration: "00:08:02"
+source_language: "en"
+target_language: "zh-CN"
+caption_source: "YouTube creator/human captions, en"
+caption_type: "human"
+speaker_attribution: "inferred"
+status: "complete"
+format_version: 3
+tags:
+  - 访谈
+  - 纪录片
+  - UFO
+  - 外星人
+  - 劫持事件
+  - 帕斯卡古拉
+  - Project Blue Book
+people:
+  host: "Ben Hansen"
+  guest: "Calvin Parker"
+  other: "Wynette"
+quality_review:
+  full_context_read: true
+  caption_errors_corrected: true
+  speaker_attribution_reviewed: true
+  advertisements_folded: true
+  translation_reviewed: true
+files:
+  source_segments: "source.segments.tsv"
+  video_info: "source/video.info.json"
+  source_transcript: "transcript.en.md"
+  localized_transcript: "transcript.zh-CN.md"
+  correction_log: "corrections.zh-CN.md"
+  drafts:
+    - "drafts/transcript.en.annotated.txt"
+    - "drafts/transcript.zh-CN.annotated.txt"
+rendered_from:
+  source_transcript: "drafts/transcript.en.annotated.txt"
+  localized_transcript: "drafts/transcript.zh-CN.annotated.txt"
+  source_timeline: "source.segments.tsv"

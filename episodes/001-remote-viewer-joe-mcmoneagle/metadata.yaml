@@ -1,0 +1,46 @@
+episode: 1
+slug: remote-viewer-joe-mcmoneagle
+title: "Remote Viewer #001 (US MILITARY) Sees Them Coming... | Joe McMoneagle"
+translated_title: "遥视者 #001（美军）：“他们正朝这里来”……｜乔·麦克莫尼格尔"
+url: "https://www.youtube.com/watch?v=XDxiARs25nc"
+platform: YouTube
+channel: Aaron Alexander
+duration: "01:31:52"
+source_language: en
+target_language: zh-CN
+caption_source: "YouTube auto-generated, en-orig"
+caption_type: automatic
+speaker_attribution: inferred
+status: complete
+format_version: 3
+tags:
+  - 播客
+  - 访谈
+  - 遥视
+  - 星门计划
+  - 意识
+  - 濒死体验
+  - 美国军方
+people:
+  host: Aaron Alexander
+  guest: Joe McMoneagle
+quality_review:
+  full_context_read: true
+  caption_errors_corrected: true
+  speaker_attribution_reviewed: true
+  advertisements_folded: true
+  translation_reviewed: true
+files:
+  source_segments: source.segments.tsv
+  source_transcript: transcript.en.md
+  localized_transcript: transcript.zh-CN.md
+  correction_log: corrections.zh-CN.md
+  raw_subtitles:
+    - source/subtitles/XDxiARs25nc.en-orig.json3
+  drafts:
+    - drafts/transcript.en.annotated.txt
+    - drafts/transcript.zh-CN.annotated.txt
+rendered_from:
+  source_transcript: drafts/transcript.en.annotated.txt
+  localized_transcript: drafts/transcript.zh-CN.annotated.txt
+  source_timeline: source.segments.tsv

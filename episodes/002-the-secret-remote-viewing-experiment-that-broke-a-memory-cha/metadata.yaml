@@ -1,0 +1,52 @@
+episode: 2
+slug: "the-secret-remote-viewing-experiment-that-broke-a-memory-cha"
+title: "The Secret Remote Viewing Experiment That Broke A Memory Champion's Reality | Nelson Dellis"
+translated_title: "击碎记忆冠军现实的秘密遥视实验｜尼尔森·德利斯"
+url: "https://www.youtube.com/watch?v=Rs3mjSP6A0o"
+platform: "YouTube"
+channel: "THIRD EYE DROPS with Michael Phillip"
+upload_date: "2026-09-25"
+duration: "02:02:24"
+source_language: "en"
+target_language: "zh-CN"
+caption_source: "YouTube auto-generated captions, en-orig"
+caption_type: "automatic"
+speaker_attribution: "inferred"
+status: "complete"
+format_version: 3
+tags:
+  - 播客
+  - 访谈
+  - 遥视
+  - 记忆术
+  - 星门计划
+  - 门罗研究所
+  - 出体体验
+  - 意识
+people:
+  host: "Michael Phillip"
+  guest: "Nelson Dellis"
+quality_review:
+  full_context_read: true
+  caption_errors_corrected: true
+  speaker_attribution_reviewed: true
+  advertisements_folded: true
+  translation_reviewed: true
+files:
+  source_segments: "source.segments.tsv"
+  video_info: "source/video.info.json"
+  source_transcript: "transcript.en.md"
+  localized_transcript: "transcript.zh-CN.md"
+  correction_log: "corrections.zh-CN.md"
+  raw_subtitles:
+    - "source/subtitles/Rs3mjSP6A0o.en-orig.json3"
+    - "source/subtitles/Rs3mjSP6A0o.en.json3"
+  drafts:
+    - "drafts/transcript.zh-CN.part-01.txt"
+    - "drafts/transcript.zh-CN.part-02.txt"
+    - "drafts/transcript.en.part-01.txt"
+    - "drafts/transcript.en.part-02.txt"
+rendered_from:
+  localized_transcript: "drafts/transcript.zh-CN.part-01.txt"
+  source_transcript: "drafts/transcript.en.part-01.txt"
+  source_timeline: "source.segments.tsv"
