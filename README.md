@@ -18,7 +18,7 @@ YouTube is supported today. Bilibili, Douyin, Vimeo, other [yt-dlp](https://gith
 
 ## Transcripts
 
-[Read all transcripts online](https://yishibakaien.github.io/video-specimen/)
+[Read all transcripts online](https://yishibakaien.github.io/video-transcript-localization/)
 
 The generated HTML is a standalone reading page: it supports light/dark themes, responsive layouts, and bilingual or single-language views.
 

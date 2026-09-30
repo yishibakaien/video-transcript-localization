@@ -16,7 +16,7 @@
 
 ## 已完成的文稿
 
-[在浏览器中阅读全部文稿](https://yishibakaien.github.io/video-specimen/)
+[在浏览器中阅读全部文稿](https://yishibakaien.github.io/video-transcript-localization/)
 
 生成的 HTML 是独立的阅读页，支持深浅色主题、响应式布局，以及双语或单语视图。
 
