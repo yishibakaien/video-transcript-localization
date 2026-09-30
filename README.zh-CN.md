@@ -23,9 +23,9 @@
 <!-- episodes:start -->
 | # | 标题 | 频道 | 平台 | 时长 |
 |:---|:---|:---|:---|:---|
-| 001 | [遥视者 #001（美军）：“他们正朝这里来”……｜乔·麦克莫尼格尔](episodes/001-remote-viewer-joe-mcmoneagle/index.html) | Aaron Alexander | YouTube | 01:31:52 |
-| 002 | [击碎记忆冠军现实的秘密遥视实验｜尼尔森·德利斯](episodes/002-the-secret-remote-viewing-experiment-that-broke-a-memory-cha/index.html) | THIRD EYE DROPS with Michael Phillip | YouTube | 02:02:24 |
-| 003 | [UFO 劫持案亲历者描述可怕的抓捕者｜UFO Witness｜Travel Channel](episodes/003-ufo-abductee-describes-horrifying-captors-ufo-witness-travel/index.html) | Travel Channel | YouTube | 00:08:02 |
+| 001 | [遥视者 #001（美军）：“他们正朝这里来”……｜乔·麦克莫尼格尔](https://yishibakaien.github.io/video-transcript-localization/episodes/001-remote-viewer-joe-mcmoneagle/index.html) | Aaron Alexander | YouTube | 01:31:52 |
+| 002 | [击碎记忆冠军现实的秘密遥视实验｜尼尔森·德利斯](https://yishibakaien.github.io/video-transcript-localization/episodes/002-the-secret-remote-viewing-experiment-that-broke-a-memory-cha/index.html) | THIRD EYE DROPS with Michael Phillip | YouTube | 02:02:24 |
+| 003 | [UFO 劫持案亲历者描述可怕的抓捕者｜UFO Witness｜Travel Channel](https://yishibakaien.github.io/video-transcript-localization/episodes/003-ufo-abductee-describes-horrifying-captors-ufo-witness-travel/index.html) | Travel Channel | YouTube | 00:08:02 |
 <!-- episodes:end -->
 
 ## 每份文稿包含什么
@@ -77,7 +77,7 @@ python3 $SKILL/scripts/render_markdown.py EP EP/drafts/transcript.zh-CN.annotate
 
 ## 许可
 
-代码、脚本和说明文档采用 MIT 许可，见 [LICENSE](LICENSE)。剧集正文另有版权说明，见 [`episodes/LICENSE`](episodes/LICENSE)——原始视频、字幕和音频仍归各自创作者所有。
+代码、脚本和说明文档采用 MIT 许可，见 [LICENSE](LICENSE)。原始视频、字幕和音频仍归各自创作者所有。
 
 ## 目录结构
 

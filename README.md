@@ -25,9 +25,9 @@ The generated HTML is a standalone reading page: it supports light/dark themes, 
 <!-- episodes:start -->
 | # | Title | Channel | Platform | Duration |
 |:---|:---|:---|:---|:---|
-| 001 | [Remote Viewer #001 (US MILITARY) Sees Them Coming... \| Joe McMoneagle](episodes/001-remote-viewer-joe-mcmoneagle/index.html) | Aaron Alexander | YouTube | 01:31:52 |
-| 002 | [The Secret Remote Viewing Experiment That Broke A Memory Champion's Reality \| Nelson Dellis](episodes/002-the-secret-remote-viewing-experiment-that-broke-a-memory-cha/index.html) | THIRD EYE DROPS with Michael Phillip | YouTube | 02:02:24 |
-| 003 | [UFO Abductee Describes Horrifying Captors \| UFO Witness \| Travel Channel](episodes/003-ufo-abductee-describes-horrifying-captors-ufo-witness-travel/index.html) | Travel Channel | YouTube | 00:08:02 |
+| 001 | [Remote Viewer #001 (US MILITARY) Sees Them Coming... \| Joe McMoneagle](https://yishibakaien.github.io/video-transcript-localization/episodes/001-remote-viewer-joe-mcmoneagle/index.html) | Aaron Alexander | YouTube | 01:31:52 |
+| 002 | [The Secret Remote Viewing Experiment That Broke A Memory Champion's Reality \| Nelson Dellis](https://yishibakaien.github.io/video-transcript-localization/episodes/002-the-secret-remote-viewing-experiment-that-broke-a-memory-cha/index.html) | THIRD EYE DROPS with Michael Phillip | YouTube | 02:02:24 |
+| 003 | [UFO Abductee Describes Horrifying Captors \| UFO Witness \| Travel Channel](https://yishibakaien.github.io/video-transcript-localization/episodes/003-ufo-abductee-describes-horrifying-captors-ufo-witness-travel/index.html) | Travel Channel | YouTube | 00:08:02 |
 <!-- episodes:end -->
 
 ## What Each Transcript Contains
@@ -84,9 +84,7 @@ and are not stored or forwarded.
 ## License
 
 Code, scripts, and documentation are MIT licensed — see [LICENSE](LICENSE).
-Episode text carries its own notice in
-[`episodes/LICENSE`](episodes/LICENSE) because the source videos, captions,
-and original audio remain the property of their respective creators.
+Source videos, captions, and original audio remain the property of their respective creators.
 
 ## Project Layout
 
