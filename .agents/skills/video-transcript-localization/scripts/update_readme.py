@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate the episode catalog in README.md and README.zh-CN.md from episodes/*/metadata.yaml."""
+"""Regenerate the episode catalog in README.md and README.en.md from episodes/*/metadata.yaml."""
 
 from __future__ import annotations
 
@@ -80,7 +80,7 @@ def main() -> int:
     args = parse_args()
     root = args.root.expanduser().resolve()
     try:
-        for name, zh in (("README.md", False), ("README.zh-CN.md", True)):
+        for name, zh in (("README.md", True), ("README.en.md", False)):
             changed = update(root / name, catalog(root, zh, args.site_url))
             print(f"{root / name}: {'updated' if changed else 'unchanged'}")
     except (OSError, ValueError) as exc:

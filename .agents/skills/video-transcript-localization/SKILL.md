@@ -120,7 +120,7 @@ Typical ASR failures: split or garbled names (`McMagle` → `McMoneagle`), brand
 
 ## README Maintenance
 
-The project root has `README.md` (English, primary) and `README.zh-CN.md` (Chinese). Each links to the other at the top. Keep both in sync with the project:
+The project root has `README.md` (Simplified Chinese, primary) and `README.en.md` (English). Each links to the other at the top. Keep both in sync with the project:
 
 - **Transcript lists** — the block between `<!-- episodes:start -->` and `<!-- episodes:end -->` is generated from `episodes/*/metadata.yaml`. Both READMEs link each episode's GitHub Pages reading page. `render_markdown.py` refreshes it after every successful render. After adding, deleting, or renaming an episode, or editing its title, channel, platform, or duration in `metadata.yaml` without re-rendering, run `scripts/update_readme.py`. Never hand-edit the block.
 - **Prose** — when you change this skill's features, workflow, commands, requirements, supported platforms, or directory layout, update the matching sections in both READMEs in the same change, English first, then Chinese with identical meaning.

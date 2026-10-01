@@ -856,7 +856,7 @@ def refresh_readmes(episode_dir: Path) -> None:
     root = update_readme.PROJECT_ROOT
     if episode_dir.parent != root / "episodes" or not (root / "README.md").is_file():
         return
-    for name, zh in (("README.md", False), ("README.zh-CN.md", True)):
+    for name, zh in (("README.md", True), ("README.en.md", False)):
         path = root / name
         try:
             if path.is_file() and update_readme.update(path, update_readme.catalog(root, zh)):

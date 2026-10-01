@@ -28,7 +28,7 @@ refreshes both README tables and the root site listing.
 - Keep generated HTML self-contained: no external CSS or JavaScript files.
 - Run `render_markdown.py` after changing a draft; do not edit regenerated
   Markdown or HTML by hand.
-- Keep Chinese and English READMEs in sync.
+- Keep the Chinese main README (`README.md`) and English README (`README.en.md`) in sync.
 
 ## Licensing
 

@@ -1,116 +1,140 @@
-# Video Specimen
+# 视频标本
 
-> Personal open-source project, maintained under the `yishibakaien` identity.
+> 由 `yishibakaien` 维护的个人开源项目。
 
-**English** | [简体中文](README.zh-CN.md)
+**简体中文** | [English](README.en.md)
 
-Turn online videos into complete, readable, searchable **Simplified Chinese HTML transcripts**.
+将在线视频转换成完整、易读、可检索的**简体中文 HTML 逐字稿**。本仓库同时是一个可供 AI 编程代理调用的 skill，以及已处理视频的文稿库。
 
-The project is an agent skill ([`.agents/skills/video-transcript-localization`](.agents/skills/video-transcript-localization/SKILL.md)) plus a library of processed episodes. You give an AI coding agent a video link. It then:
+## 快速开始
 
-1. downloads the captions;
-2. reads the whole transcript to understand the context;
-3. fixes obvious speech-recognition errors;
-4. translates the transcript;
-5. renders the Markdown and then a standalone HTML reading page.
+### 1. 获取并打开仓库
 
-YouTube is supported today. Bilibili, Douyin, Vimeo, other [yt-dlp](https://github.com/yt-dlp/yt-dlp) sites, supplied subtitle files, and local speech recognition (ASR) are covered by the workflow as well. The Markdown file remains as a searchable, versionable intermediate document; the HTML page is the main reading interface.
+这个 skill 不是通过 pip 或 npm 发布的独立软件包；请直接克隆本仓库，并将它作为 AI 代理的工作区使用：
 
-## Transcripts
-
-[Read all transcripts online](https://yishibakaien.github.io/video-transcript-localization/)
-
-The generated HTML is a standalone reading page: it supports light/dark themes, responsive layouts, and bilingual or single-language views.
-
-<!-- episodes:start -->
-| # | Title | Channel | Platform | Duration |
-|:---|:---|:---|:---|:---|
-| 001 | [Remote Viewer #001 (US MILITARY) Sees Them Coming... \| Joe McMoneagle](https://yishibakaien.github.io/video-transcript-localization/episodes/001-remote-viewer-joe-mcmoneagle/index.html) | Aaron Alexander | YouTube | 01:31:52 |
-| 002 | [The Secret Remote Viewing Experiment That Broke A Memory Champion's Reality \| Nelson Dellis](https://yishibakaien.github.io/video-transcript-localization/episodes/002-the-secret-remote-viewing-experiment-that-broke-a-memory-cha/index.html) | THIRD EYE DROPS with Michael Phillip | YouTube | 02:02:24 |
-| 003 | [UFO Abductee Describes Horrifying Captors \| UFO Witness \| Travel Channel](https://yishibakaien.github.io/video-transcript-localization/episodes/003-ufo-abductee-describes-horrifying-captors-ufo-witness-travel/index.html) | Travel Channel | YouTube | 00:08:02 |
-<!-- episodes:end -->
-
-## What Each Transcript Contains
-
-- **Complete text** — nothing is summarized away; every caption timestamp is covered and machine-verified.
-- **Context-aware corrections** — names, brands, URLs, numbers, and terms are fixed using the whole transcript plus the video's description, chapters, and sponsor links. Significant fixes are logged in an appendix.
-- **Accurate, readable translation** — one consistent glossary, meaning-first wording, and no filler words or stutters.
-- **Original text included** — foreign-language videos also produce a corrected source-language transcript, so the companion HTML can show each turn in the original language.
-- **Reading aids** — summary (导读), glossary (术语对照), chapter navigation, and thematic sections. Long answers are split into paragraphs.
-- **Quiet speaker labels** — a small `name · timestamp` line above each turn; the timestamp jumps to that moment in the video.
-- **Ads folded away** — sponsor reads are collapsed in `<details>` blocks, so they stay out of sight unless expanded.
-- **Searchable metadata** — YAML front matter with people, tags, sponsors, platform, and caption provenance.
-
-## Usage
-
-Ask your agent, for example:
-
-```text
-Use $video-transcript-localization to process https://www.youtube.com/watch?v=VIDEO_ID
+```bash
+git clone https://github.com/yishibakaien/video-transcript-localization.git
+cd video-transcript-localization
 ```
 
-Or run the pipeline by hand from the project root. `SKILL` is the skill directory and `EP` is the episode directory that `init_episode.py` prints:
+skill 定义位于 [`.agents/skills/video-transcript-localization`](.agents/skills/video-transcript-localization/SKILL.md)。在 Kiro 中打开本仓库后，可以用 `$video-transcript-localization` 调用它。
+
+### 2. 安装依赖
+
+需要 Python 3.9+ 和 `yt-dlp`。仓库脚本只依赖 Python 标准库，不需要安装 `requirements.txt`。
+
+```bash
+python3 --version
+# macOS（Homebrew）
+brew install yt-dlp
+
+# Linux 或其他已安装 Python/pip 的环境
+python3 -m pip install --user -U yt-dlp
+
+yt-dlp --version
+```
+
+没有字幕时可选用本地语音识别（ASR）：Apple Silicon 安装 [mlx-whisper](https://github.com/ml-explore/mlx-examples/tree/main/whisper)，其他机器安装 [faster-whisper](https://github.com/SYSTRAN/faster-whisper)。平台差异、登录字幕和 ASR 导入方式见 [platforms.md](.agents/skills/video-transcript-localization/references/platforms.md)。
+
+### 3. 交给 AI 代理处理
+
+在仓库根目录的 Kiro 对话中发送：
+
+```text
+使用 $video-transcript-localization 处理 https://www.youtube.com/watch?v=VIDEO_ID
+```
+
+代理会提取字幕，通读上下文，纠正明显的识别错误，撰写简体中文文稿，并生成 `episodes/NNN-slug/index.html`。外语视频还会生成校正后的原文，HTML 页面可切换双语对照。
+
+> skill 需要代理实际阅读 `source/video.info.json` 和完整 `source.segments.tsv`，再编写标注草稿、校正记录和元数据；脚本负责提取、渲染与校验，并不会自动翻译或判断说话人。
+
+## 手动运行
+
+如果不通过代理，可以在仓库根目录按以下流程操作。`init_episode.py` 输出的剧集目录用 `EP` 代替：
 
 ```bash
 SKILL=.agents/skills/video-transcript-localization
-python3 $SKILL/scripts/init_episode.py --url "https://www.youtube.com/watch?v=VIDEO_ID"   # prints EP
-python3 $SKILL/scripts/extract_captions.py EP             # captions + source.segments.tsv
-# For foreign-language videos, the agent writes the corrected source draft first
-python3 $SKILL/scripts/render_markdown.py EP EP/drafts/transcript.<source>.annotated.txt \
+python3 "$SKILL/scripts/init_episode.py" --url "https://www.youtube.com/watch?v=VIDEO_ID"
+# 将上一条命令输出的目录填入 EP
+python3 "$SKILL/scripts/extract_captions.py" EP
+```
+
+随后先阅读 `EP/source/video.info.json` 与 `EP/source.segments.tsv`，并按 [translation-format.md](.agents/skills/video-transcript-localization/references/translation-format.md) 编写草稿。
+
+**外语视频**：先写校正后的原文草稿，再写中文翻译和校正记录：
+
+```bash
+python3 "$SKILL/scripts/render_markdown.py" EP EP/drafts/transcript.<source>.annotated.txt \
   --language <source> --role source --no-html
-# The agent then writes EP/drafts/transcript.zh-CN.annotated.txt and EP/corrections.zh-CN.md
-python3 $SKILL/scripts/render_markdown.py EP EP/drafts/transcript.zh-CN.annotated.txt \
+
+python3 "$SKILL/scripts/render_markdown.py" EP EP/drafts/transcript.zh-CN.annotated.txt \
   --language zh-CN --role localized --corrections EP/corrections.zh-CN.md
 ```
 
-Rendering validates the result and refreshes the transcript lists in both READMEs.
+**中文源视频**：不翻译，但仍要写 `transcript.zh-CN.annotated.txt`，完成同音字、标点和说话人校正。当前渲染器需要将同一份草稿显式用作对照原文：
 
-For Bilibili or Douyin videos that require your own login, add `--cookies-from-browser chrome`. For videos without captions, see [platforms.md](.agents/skills/video-transcript-localization/references/platforms.md).
+```bash
+python3 "$SKILL/scripts/render_markdown.py" EP EP/drafts/transcript.zh-CN.annotated.txt \
+  --language zh-CN --role localized \
+  --source-transcript EP/drafts/transcript.zh-CN.annotated.txt \
+  --corrections EP/corrections.zh-CN.md
+```
 
-## Requirements
+命令成功时会校验时间戳覆盖、说话人标注和广告折叠，并生成 `EP/transcript.zh-CN.md` 与 `EP/index.html`。B 站或抖音需要自己的登录状态时，在初始化和提取命令中加入 `--cookies-from-browser chrome`；cookie 仅用于本机当次请求，不会被保存或转发。
 
-- Python 3.9+
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) (`brew install yt-dlp`)
-- Optional, for videos without captions: [mlx-whisper](https://github.com/ml-explore/mlx-examples/tree/main/whisper) (Apple Silicon) or [faster-whisper](https://github.com/SYSTRAN/faster-whisper)
+## 产物与规范
 
-## Privacy
+每个完成的文稿都包含：
 
-The workflow never uploads cookies, captions, or transcripts anywhere unless
-you explicitly push them to a repository you control. Bilibili/Douyin
-imports can read cookies from your own browser to authenticate as you;
-those cookies are only used for the network request in the running command
-and are not stored or forwarded.
+- 完整覆盖原始字幕时间轴的正文，以及自动校验；
+- 结合视频简介、章节、赞助链接所做的上下文纠错；
+- 导读、术语对照、章节导航和可跳转的视频时间戳；
+- 默认折叠的广告口播；
+- 可检索的 YAML 元数据和重要校正记录。
 
-## License
+不要手改渲染产生的 `transcript.*.md` 或 `index.html`；应修改 `drafts/`、`metadata.yaml` 或 `corrections.zh-CN.md` 后重新渲染。完整工作流与质量规则见 [SKILL.md](.agents/skills/video-transcript-localization/SKILL.md)。
 
-Code, scripts, and documentation are MIT licensed — see [LICENSE](LICENSE).
-Source videos, captions, and original audio remain the property of their respective creators.
+## 已完成的文稿
 
-## Project Layout
+[在浏览器中阅读全部文稿](https://yishibakaien.github.io/video-transcript-localization/)。HTML 阅读页支持深浅色主题、响应式布局，以及双语或单语视图。
+
+<!-- episodes:start -->
+| # | 标题 | 频道 | 平台 | 时长 |
+|:---|:---|:---|:---|:---|
+| 001 | [遥视者 #001（美军）：“他们正朝这里来”……｜乔·麦克莫尼格尔](https://yishibakaien.github.io/video-transcript-localization/episodes/001-remote-viewer-joe-mcmoneagle/index.html) | Aaron Alexander | YouTube | 01:31:52 |
+| 002 | [击碎记忆冠军现实的秘密遥视实验｜尼尔森·德利斯](https://yishibakaien.github.io/video-transcript-localization/episodes/002-the-secret-remote-viewing-experiment-that-broke-a-memory-cha/index.html) | THIRD EYE DROPS with Michael Phillip | YouTube | 02:02:24 |
+| 003 | [UFO 劫持案亲历者描述可怕的抓捕者｜UFO Witness｜Travel Channel](https://yishibakaien.github.io/video-transcript-localization/episodes/003-ufo-abductee-describes-horrifying-captors-ufo-witness-travel/index.html) | Travel Channel | YouTube | 00:08:02 |
+<!-- episodes:end -->
+
+## 项目结构
 
 ```text
 .agents/skills/video-transcript-localization/
-|-- SKILL.md                    # workflow and quality rules for the agent
-|-- references/                 # draft format, platform notes
-`-- scripts/                    # init, extract, Markdown/HTML rendering, README sync
+|-- SKILL.md                    # skill 工作流与质量规则
+|-- references/                 # 草稿格式、平台说明
+`-- scripts/                    # 初始化、提取、Markdown/HTML 渲染、README 同步
 episodes/NNN-slug/
-|-- metadata.yaml               # episode record
-|-- source/                     # raw subtitles and video info
-|-- source.segments.tsv         # normalized timeline (never edited)
-|-- drafts/                     # annotated drafts written by the agent
-|-- corrections.zh-CN.md        # caption correction log
-|-- index.html                  # Simplified Chinese bilingual reading page (main deliverable)
-|-- transcript.zh-CN.md         # Simplified Chinese transcript used to build the HTML page
-`-- transcript.<source>.md      # corrected source transcript for foreign-language videos
-index.html                      # landing page for GitHub Pages
+|-- metadata.yaml               # 剧集元数据
+|-- source/                     # 原始字幕与视频信息
+|-- source.segments.tsv         # 标准化时间轴（不修改）
+|-- drafts/                     # 由代理编写的标注草稿
+|-- corrections.zh-CN.md        # 字幕校正记录
+|-- index.html                  # 简体中文双语阅读页（主要成果）
+|-- transcript.zh-CN.md         # 用于构建 HTML 的简体中文文稿
+`-- transcript.<source>.md      # 外语视频的校正原文文稿
+index.html                      # GitHub Pages 入口页
 ```
 
-## Keeping the READMEs Current
+## 文稿目录维护
 
-The transcript lists between the `episodes:start` / `episodes:end` markers are generated from `episodes/*/metadata.yaml`; do not edit them by hand. They refresh automatically on every render. To refresh them manually:
+`<!-- episodes:start -->` 与 `<!-- episodes:end -->` 之间的列表由 `episodes/*/metadata.yaml` 自动生成，请勿手动修改。成功渲染时会自动刷新；仅改动元数据、增删或重命名剧集后，可手动运行：
 
 ```bash
 python3 .agents/skills/video-transcript-localization/scripts/update_readme.py
 ```
 
-When the skill's features or workflow change, update the prose in both `README.md` and `README.zh-CN.md` so they stay in sync.
+功能、工作流、命令、依赖、支持平台或目录结构变更时，请同步更新中文主 README（`README.md`）和英文 README（`README.en.md`）。
+
+## 许可
+
+代码、脚本和说明文档采用 MIT 许可，见 [LICENSE](LICENSE)。原始视频、字幕和音频仍归各自创作者所有；提交内容前请确认自己有权处理和分享。
